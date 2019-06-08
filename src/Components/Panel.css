@@ -1,0 +1,39 @@
+.panel {
+  display: flex;
+  justify-content: center;
+}
+
+.peg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: hotpink;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.pink {
+  background-color: hotpink;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.yellow {
+  background-color: yellow;
+}

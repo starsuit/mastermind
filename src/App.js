@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+// import components
+import Panel from "./Components/Panel";
 
 function App() {
+  const colours = ["orange", "blue", "pink", "yellow"];
+  const goes = Array.from({ length: 5 }, (_, i) => i);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Mastermind</h1>
       </header>
+      <main>
+        {goes.map(item => (
+          <Panel key={item} colours={colours} />
+        ))}
+      </main>
     </div>
   );
 }
