@@ -19,6 +19,11 @@ describe("generateSequence helper", () => {
     expect(Array.isArray(generatedArray)).toBeTruthy();
     expect(generatedArray).toHaveLength(4);
   });
+  test("Array contains colours from the target array of colours", () => {
+    expect(
+      generatedArray.every(colour => colours.includes(colour))
+    ).toBeTruthy();
+  });
 });
 
 describe("checkGuess helper", () => {
