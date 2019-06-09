@@ -7,6 +7,6 @@ const testColours = ["orange", "blue", "pink", "yellow"];
 afterEach(cleanup);
 
 test("Panel component", () => {
-  const { getByTestId } = render(<Panel colours={testColours} />);
+  const { getByTestId } = render(<Panel guess={testColours} />);
   getByTestId("panel");
 });
