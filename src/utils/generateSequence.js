@@ -1,10 +1,5 @@
-const colours = ["red", "green", "pink", "blue", "orange", "purple", "yellow"];
-
-const generate = (length = 4) => {
-  return Array.from(
-    { length },
-    _ => colours[Math.ceil(Math.random() * length)]
-  );
+const generate = colours => {
+  return Array.from({ length: 4 }, _ => colours[Math.ceil(Math.random() * 4)]);
 };
 
 export { generate };

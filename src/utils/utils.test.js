@@ -11,11 +11,11 @@ const testResponse = {
 };
 
 describe("generateSequence helper", () => {
-  const generatedArray = generate(4);
+  const generatedArray = generate(colours);
   test("Returns something", () => {
     expect(generatedArray).toBeTruthy();
   });
-  test("Returns an array the same length as the argument number", () => {
+  test("Returns an array of length 4", () => {
     expect(Array.isArray(generatedArray)).toBeTruthy();
     expect(generatedArray).toHaveLength(4);
   });
