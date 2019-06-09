@@ -3,6 +3,7 @@ import React from "react";
 const Guess = props => {
   return (
     <form data-testid="guess" className="guess" onSubmit={props.handler}>
+      <p>Choose your colours below to guess:</p>
       <label htmlFor="colour1">
         <select name="colour1" id="colour1">
           {props.colours.map(colour => (

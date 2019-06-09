@@ -16,7 +16,8 @@ function App() {
   );
   const [pegArray, setPegArray] = React.useState(goes);
   const [guesses, setGuesses] = React.useState(10);
-  const [answer] = React.useState(generate(colours));
+  const [answer, setAnswer] = React.useState(generate(colours));
+  const [gameStatus, setGameStatus] = React.useState("playing");
 
   const handleGuess = event => {
     event.preventDefault();
@@ -29,7 +30,16 @@ function App() {
     setPegArray(
       pegArray.map((item, i) => (i + 1 === guesses ? guessArray : item))
     );
+    console.log(guesses);
+    if (guesses - 1 === 0) setGameStatus("lost");
     setGuesses(guesses - 1);
+  };
+
+  const handleReset = () => {
+    setGameStatus("playing");
+    setPegArray(goes);
+    setAnswer(generate(colours));
+    setGuesses(10);
   };
 
   return (
@@ -38,10 +48,23 @@ function App() {
         <h1>Mastermind</h1>
       </header>
       <main>
-        <p>Answer greyed out - no peeking!</p>
+        <p>
+          {gameStatus === "won"
+            ? `Congratulations, you won in ${10 - guesses} moves!`
+            : gameStatus === "lost"
+            ? "Sorry, you lost. Here's the answer:"
+            : "Answer greyed out - no peeking!"}
+        </p>
+        {gameStatus === "playing" || (
+          <button onClick={handleReset}>Play again</button>
+        )}
         <Panel
           key="answer"
-          guess={guesses === 0 ? answer : ["grey", "grey", "grey", "grey"]}
+          guess={
+            gameStatus === "won" || gameStatus === "lost"
+              ? answer
+              : ["grey", "grey", "grey", "grey"]
+          }
         />
         {pegArray.map((guess, i) => (
           <Panel
@@ -49,10 +72,17 @@ function App() {
             key={guess[0] + i}
             guess={guess}
             answer={answer}
+            setGameStatus={setGameStatus}
           />
         ))}
-        <p>Choose your colours below to guess:</p>
-        <Guess colours={colours} handler={handleGuess} guesses={guesses} />
+        {gameStatus !== "playing" || (
+          <Guess
+            colours={colours}
+            handler={handleGuess}
+            guesses={guesses}
+            gameStatus={gameStatus}
+          />
+        )}
       </main>
     </div>
   );

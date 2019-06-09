@@ -11,7 +11,9 @@ const Panel = props => {
       {props.guess.map((colour, i) => (
         <div key={colour + i} className={"peg " + colour} />
       ))}
-      {!props.answer || <Response response={response} />}
+      {!props.answer || (
+        <Response response={response} setGameStatus={props.setGameStatus} />
+      )}
     </div>
   );
 };

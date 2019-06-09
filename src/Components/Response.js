@@ -8,6 +8,7 @@ const Response = props => {
     { length: 4 - (props.response.reds + props.response.whites) },
     _ => "black"
   );
+  if (reds === 4) props.setGameStatus("won");
   const responseArray = [...whites, ...reds, ...none];
   return (
     <div data-testid="response" className="response">
