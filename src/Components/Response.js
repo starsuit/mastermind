@@ -9,8 +9,8 @@ const Response = ({ response, setGameStatus }) => {
     _ => "black"
   );
   React.useEffect(() => {
-    if (response.reds === 4) setGameStatus("won");
-  }, [response.reds, setGameStatus]);
+    if (response.whites === 4) setGameStatus("won");
+  }, [response.whites, setGameStatus]);
 
   const responseArray = [...whites, ...reds, ...none];
   return (

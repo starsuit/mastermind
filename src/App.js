@@ -59,6 +59,8 @@ function App() {
             : "Try to guess the sequence of four colours in less than 10 moves!"}
         </p>
 
+        <Panel key="answer" guess={answer} />
+
         {gameStatus === "playing" || (
           <Panel
             key="answer"
