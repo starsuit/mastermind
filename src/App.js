@@ -38,13 +38,20 @@ function App() {
         <h1>Mastermind</h1>
       </header>
       <main>
+        <p>Answer greyed out - no peeking!</p>
         <Panel
           key="answer"
           guess={guesses === 0 ? answer : ["grey", "grey", "grey", "grey"]}
         />
         {pegArray.map((guess, i) => (
-          <Panel key={guess[0] + i} guess={guess} answer={answer} />
+          <Panel
+            label={10 - i}
+            key={guess[0] + i}
+            guess={guess}
+            answer={answer}
+          />
         ))}
+        <p>Choose your colours below to guess:</p>
         <Guess colours={colours} handler={handleGuess} guesses={guesses} />
       </main>
     </div>

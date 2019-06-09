@@ -7,6 +7,7 @@ const Panel = props => {
   const response = !props.answer || checkGuess(props.guess, props.answer);
   return (
     <div data-testid="panel" className="panel">
+      <p>{props.answer ? `Guess ${props.label}` : "Answer"}</p>
       {props.guess.map((colour, i) => (
         <div key={colour + i} className={"peg " + colour} />
       ))}
