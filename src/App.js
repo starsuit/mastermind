@@ -58,6 +58,13 @@ function App() {
             ? "Sorry, you lost. Here's the answer:"
             : "Try to guess the sequence of four colours in less than 10 moves!"}
         </p>
+        {gameStatus === "playing" && (
+          <p>
+            The computer will return white for the number of colours in the
+            right spot, red for correct colours in the wrong spot, and black for
+            any wrong colours.
+          </p>
+        )}
 
         {gameStatus === "playing" || <Panel key="answer" guess={answer} />}
         {pegArray.map((guess, i) => (
