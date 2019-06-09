@@ -39,7 +39,10 @@ const Guess = props => {
           ))}
         </select>
       </label>
-      <button>Guess!</button>
+      <button disabled={props.guesses === 0}>Guess!</button>
+      <p>
+        {props.guesses} {props.guesses === 1 ? "guess" : "guesses"} remaining
+      </p>
     </form>
   );
 };

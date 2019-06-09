@@ -15,7 +15,7 @@ function App() {
     Array.from({ length: 4 }, _ => "white")
   );
   const [pegArray, setPegArray] = React.useState(goes);
-  const [currentGuess, setCurrentGuess] = React.useState(9);
+  const [guesses, setGuesses] = React.useState(10);
   const [answer] = React.useState(generate(colours));
 
   const handleGuess = event => {
@@ -26,12 +26,10 @@ function App() {
       event.target.colour3.value,
       event.target.colour4.value
     ];
-    console.log(guessArray);
     setPegArray(
-      pegArray.map((item, i) => (i === currentGuess ? guessArray : item))
+      pegArray.map((item, i) => (i + 1 === guesses ? guessArray : item))
     );
-    setCurrentGuess(currentGuess - 1);
-    console.log(currentGuess);
+    setGuesses(guesses - 1);
   };
 
   return (
@@ -42,13 +40,13 @@ function App() {
       <main>
         <Panel
           key="answer"
-          guess={answer}
-          // guess={currentGuess === 0 ? answer : ["grey", "grey", "grey", "grey"]}
+          // guess={answer}
+          guess={guesses === 0 ? answer : ["grey", "grey", "grey", "grey"]}
         />
         {pegArray.map((guess, i) => (
           <Panel key={guess[0] + i} guess={guess} answer={answer} />
         ))}
-        <Guess colours={colours} handler={handleGuess} />
+        <Guess colours={colours} handler={handleGuess} guesses={guesses} />
       </main>
     </div>
   );
