@@ -1,14 +1,17 @@
 import React from "react";
 import "./Response.css";
 
-const Response = props => {
-  const whites = Array.from({ length: props.response.whites }, _ => "white");
-  const reds = Array.from({ length: props.response.reds }, _ => "red");
+const Response = ({ response, setGameStatus }) => {
+  const whites = Array.from({ length: response.whites }, _ => "white");
+  const reds = Array.from({ length: response.reds }, _ => "red");
   const none = Array.from(
-    { length: 4 - (props.response.reds + props.response.whites) },
+    { length: 4 - (response.reds + response.whites) },
     _ => "black"
   );
-  if (props.response.reds === 4) props.setGameStatus("won");
+  React.useEffect(() => {
+    if (response.reds === 4) setGameStatus("won");
+  }, [response.reds, setGameStatus]);
+
   const responseArray = [...whites, ...reds, ...none];
   return (
     <div data-testid="response" className="response">
