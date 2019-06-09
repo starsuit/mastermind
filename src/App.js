@@ -59,18 +59,7 @@ function App() {
             : "Try to guess the sequence of four colours in less than 10 moves!"}
         </p>
 
-        <Panel key="answer" guess={answer} />
-
-        {gameStatus === "playing" || (
-          <Panel
-            key="answer"
-            guess={
-              gameStatus === "won" || gameStatus === "lost"
-                ? answer
-                : ["grey", "grey", "grey", "grey"]
-            }
-          />
-        )}
+        {gameStatus === "playing" || <Panel key="answer" guess={answer} />}
         {pegArray.map((guess, i) => (
           <Panel
             label={10 - i}
