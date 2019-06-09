@@ -1,0 +1,23 @@
+.response {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.response-peg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.red {
+  background-color: red;
+}
+
+.white {
+  background-color: white;
+}
+
+.black {
+  background-color: black;
+}
