@@ -53,19 +53,19 @@ function App() {
             ? `Congratulations, you won in ${10 - guesses} moves!`
             : gameStatus === "lost"
             ? "Sorry, you lost. Here's the answer:"
-            : "Answer greyed out - no peeking!"}
+            : "Try to guess the sequence of four colours in less than 10 moves!"}
         </p>
+
         {gameStatus === "playing" || (
-          <button onClick={handleReset}>Play again</button>
+          <Panel
+            key="answer"
+            guess={
+              gameStatus === "won" || gameStatus === "lost"
+                ? answer
+                : ["grey", "grey", "grey", "grey"]
+            }
+          />
         )}
-        <Panel
-          key="answer"
-          guess={
-            gameStatus === "won" || gameStatus === "lost"
-              ? answer
-              : ["grey", "grey", "grey", "grey"]
-          }
-        />
         {pegArray.map((guess, i) => (
           <Panel
             label={10 - i}
@@ -75,7 +75,9 @@ function App() {
             setGameStatus={setGameStatus}
           />
         ))}
-        {gameStatus !== "playing" || (
+        {gameStatus !== "playing" ? (
+          <button onClick={handleReset}>Play again</button>
+        ) : (
           <Guess
             colours={colours}
             handler={handleGuess}
