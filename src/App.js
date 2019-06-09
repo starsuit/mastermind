@@ -5,7 +5,17 @@ import "./App.css";
 import Panel from "./Components/Panel";
 
 function App() {
-  const colours = ["orange", "blue", "pink", "yellow"];
+  const colours = [
+    "red",
+    "green",
+    "pink",
+    "blue",
+    "orange",
+    "purple",
+    "yellow"
+  ];
+  const answer = ["orange", "blue", "pink", "yellow"];
+  const guess = ["red", "green", "pink", "blue"];
   const goes = Array.from({ length: 5 }, (_, i) => i);
   return (
     <div className="App">
@@ -14,7 +24,7 @@ function App() {
       </header>
       <main>
         {goes.map(item => (
-          <Panel key={item} colours={colours} />
+          <Panel key={item} guess={guess} answer={answer} />
         ))}
       </main>
     </div>

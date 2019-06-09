@@ -1,12 +1,13 @@
 import React from "react";
 import "./Panel.css";
 import Response from "./Response";
+import { checkGuess } from "../utils/checkGuess";
 
 const Panel = props => {
-  const response = { reds: 1, whites: 1 };
+  const response = checkGuess(props.guess, props.answer);
   return (
     <div data-testid="panel" className="panel">
-      {props.colours.map((colour, i) => (
+      {props.guess.map((colour, i) => (
         <div key={colour + i} className={"peg " + colour} />
       ))}
       <Response response={response} />
