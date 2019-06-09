@@ -40,7 +40,6 @@ function App() {
       <main>
         <Panel
           key="answer"
-          // guess={answer}
           guess={guesses === 0 ? answer : ["grey", "grey", "grey", "grey"]}
         />
         {pegArray.map((guess, i) => (
