@@ -16,6 +16,14 @@ function App() {
 
   const answer = generate(4);
 
+  const handleGuess = event => {
+    event.preventDefault();
+    setPegArray(
+      pegArray.map((item, i) => (i === currentGuess ? generate(4) : item))
+    );
+    setCurrentGuess(currentGuess + 1);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
