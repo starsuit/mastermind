@@ -43,10 +43,14 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="mastermind-header">
         <h1>Mastermind</h1>
+        <a href="https://github.com/starsuit">By Starsuit</a>
+        <a className="play" href="#game">
+          Play
+        </a>
       </header>
-      <main>
+      <main id="game" className="game">
         <p>
           {gameStatus === "won"
             ? `Congratulations, you won in ${10 - guesses} moves!`
