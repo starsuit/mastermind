@@ -4,7 +4,6 @@ import Response from "./Response";
 import { checkGuess } from "../utils/checkGuess";
 
 const Panel = props => {
-  console.log(props.answer);
   const response = !props.answer || checkGuess(props.guess, props.answer);
   return (
     <div data-testid="panel" className="panel">

@@ -30,7 +30,6 @@ function App() {
     setPegArray(
       pegArray.map((item, i) => (i + 1 === guesses ? guessArray : item))
     );
-    console.log(guesses);
     if (guesses - 1 === 0) setGameStatus("lost");
     setGuesses(guesses - 1);
   };
