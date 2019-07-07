@@ -4,9 +4,7 @@ import "./App.css";
 // import components
 import Panel from "./Components/Panel";
 import Guess from "./Components/Guess";
-
-// import util functions
-import { generate } from "./utils/generateSequence";
+import Answer from "./Components/Answer";
 
 const colours = ["red", "green", "pink", "blue", "orange", "purple", "yellow"];
 
@@ -16,8 +14,17 @@ function App() {
   );
   const [pegArray, setPegArray] = React.useState(goes);
   const [guesses, setGuesses] = React.useState(10);
-  const [answer, setAnswer] = React.useState(generate(colours));
   const [gameStatus, setGameStatus] = React.useState("playing");
+  const [gameId, setGameId] = React.useState(null);
+
+  const generate = colours => {
+    return fetch(`.netlify/functions/generateSequence?colours=${colours}`)
+      .then(result => result.json())
+      .catch(err => console.error(err));
+  };
+  React.useEffect(() => {
+    generate(colours).then(setGameId);
+  }, []);
 
   const handleGuess = event => {
     event.preventDefault();
@@ -37,9 +44,23 @@ function App() {
   const handleReset = () => {
     setGameStatus("playing");
     setPegArray(goes);
-    setAnswer(generate(colours));
+    generate(colours).then(setGameId);
     setGuesses(10);
   };
+
+  if (!gameId) {
+    return (
+      <div className="App">
+        <header className="mastermind-header">
+          <h1>Mastermind</h1>
+          <a href="https://github.com/starsuit">By Starsuit</a>
+          <a className="play" href="#game">
+            Loading...
+          </a>
+        </header>
+      </div>
+    );
+  }
 
   return (
     <div className="App">
@@ -66,13 +87,13 @@ function App() {
           </p>
         )}
 
-        {gameStatus === "playing" || <Panel key="answer" guess={answer} />}
+        {gameStatus === "playing" || <Answer key="answer" gameId={gameId} />}
         {pegArray.map((guess, i) => (
           <Panel
             label={10 - i}
             key={guess[0] + i}
             guess={guess}
-            answer={answer}
+            gameId={gameId}
             setGameStatus={setGameStatus}
           />
         ))}
